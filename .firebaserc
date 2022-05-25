@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "iogram-ffc82": {
+      "hosting": {
+        "app": [
+          "iogram-ffc82"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "iogram-ffc82"
+  }
+}
