@@ -22,7 +22,6 @@ import { FeedComponent } from './feed/feed.component';
 import { HistoriasComponent } from './historias/historias.component';
 import { HistcontentComponent } from './histcontent/histcontent.component';
 import { LoginComponent } from './login/login.component';
-import { MapComponent } from './map/map.component';
 import { NavComponent } from './nav/nav.component';
 import { PerfilComponent } from './perfil/perfil.component';
 import { PopContentComponent } from './pop-content/pop-content.component';
@@ -42,7 +41,6 @@ import { AngularFireModule } from '@angular/fire/compat';
     HistoriasComponent,
     HistcontentComponent,
     LoginComponent,
-    MapComponent,
     NavComponent,
     PerfilComponent,
     PopContentComponent,
