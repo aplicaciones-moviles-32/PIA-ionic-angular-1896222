@@ -1,0 +1,16 @@
+ion-img::part(image) {
+    height:100%;
+}
+.boton-grid {
+    width: 100%;
+    text-align: center;
+}
+
+ion-segment{//SIIIIIIIIIIIII
+    height: 50px;
+    border-bottom: 0px solid rgba(160, 160, 160, 0.453);
+}
+
+ion-segment-button{
+    border: 5px !important;
+}

@@ -1,8 +1,9 @@
-import { Injectable } from '@angular/core';
+import { ContentChild, Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/storage';
 import { environment } from 'src/environments/environment';
+import { getDatabase, ref, Database, get, child} from '@angular/fire/database'
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -18,14 +19,22 @@ firebase.initializeApp(environment.firebase);
 
 export class RealtimefbService {
 
-  constructor(private http : HttpClient) { }
+  constructor(private http : HttpClient,private rtdb : Database) { }
 
   sRef=firebase.app().storage().ref();
 
   //#region GET
   
   getPublicaciones(): any {
-    return this.http.get(environment.firebase.databaseURL+'/Publicaciones.json')
+    return this.http.get(environment.firebase.databaseURL+'/publicaciones.json');
+  }
+
+  getFeedmethod2(){
+    return get(child(ref(this.rtdb),`publicaciones`));
+  }
+
+  getPost(id:string){
+    return get(child(ref(this.rtdb),`publicaciones/`+id));
   }
 
   getDatosUsuario(): any {
@@ -37,9 +46,9 @@ export class RealtimefbService {
   }
 
   getPublicacionDetalle(id: string): any {
-    console.log(environment.firebase.databaseURL+'/Publicaciones/'+ id +'.json');
-    console.log(this.http.get(environment.firebase.databaseURL+'/Publicaciones/'+ id +'.json'));
-    return this.http.get(environment.firebase.databaseURL+'/Publicaciones/'+ id +'.json')
+    console.log(environment.firebase.databaseURL+'/publicaciones/'+ id +'.json');
+    console.log(this.http.get(environment.firebase.databaseURL+'/publicaciones/'+ id +'.json'));
+    return this.http.get(environment.firebase.databaseURL+'/publicaciones/'+ id +'.json')
   }
 
   //#endregion
@@ -47,24 +56,24 @@ export class RealtimefbService {
   //#region POST
 
   postPublicacion(post: any) {
-    return this.http.post(environment.firebase.databaseURL+'/Publicaciones.json', post)
+    return this.http.post(environment.firebase.databaseURL+'/publicaciones.json', post)
   }
 
   //#endregion
 
   //#region PUT
 
-  updatePublicacion(id: number, nuevosDatos: any) {
-    return this.http.put(environment.firebase.databaseURL+'/Publicaciones/'+ id.toString() +'.json', nuevosDatos)
+  updatePublicacion(key: string, nuevosDatos: any) {
+    return this.http.put(environment.firebase.databaseURL+'/publicaciones/'+ key.toString() +'.json', nuevosDatos)
   }
 
   //#endregion
 
   //#region DELETE
 
-  deletePublicacion(id: number){
-    console.log(environment.firebase.databaseURL+"/Publicaciones/"+ id.toString() + ".json");
-    return this.http.delete(environment.firebase.databaseURL+'/Publicaciones/'+ id.toString() + '.json')
+  deletePublicacion(id: string){
+    console.log(environment.firebase.databaseURL+"/publicaciones/"+ id.toString() + ".json");
+    return this.http.delete(environment.firebase.databaseURL+'/publicaciones/'+ id.toString() + '.json')
   }
 
   //#endregion

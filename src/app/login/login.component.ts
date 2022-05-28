@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AlertController } from '@ionic/angular';
+import { AlertController, ModalController } from '@ionic/angular';
 import { Usuario } from '../models/usuario';
 import { AuthusersService } from '../services/authusers.service';
 import { getMaxListeners } from 'process';
@@ -11,17 +11,23 @@ import { getMaxListeners } from 'process';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private auth : AuthusersService, public alertC : AlertController) { }
+  constructor(private auth : AuthusersService, public alertC : AlertController, public modalC : ModalController) { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    if(this.auth.getUserLogged()){
+      this.modalC.dismiss();
+    }
+  }
 
   user : Usuario = {email : '', pass : ''};
 
   Ingresar(){
+
     try{
       const{email,pass}=this.user;
       this.auth.login(email,pass).then(res=>{
         console.log("Sesion Iniciada:",res);
+        this.modalC.dismiss();
       })
     }
     catch(err){
@@ -49,9 +55,11 @@ export class LoginComponent implements OnInit {
   }
 
   IngresarGoogle(){
+    console.log('Iniciando con Google');
     const{email,pass}=this.user;
     this.auth.loginGoogle(email,pass).then(res=>{
       console.log("Sesion Iniciada con Google:",res);
+      this.modalC.dismiss();
     })
   }
   

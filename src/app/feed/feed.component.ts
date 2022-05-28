@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { PopoverController } from '@ionic/angular';
+import { resourceUsage } from 'process';
+import { Post } from '../models/post';
 import { AuthusersService } from '../services/authusers.service';
 import { RealtimefbService } from '../services/realtimefb.service';
 
@@ -13,27 +15,30 @@ export class FeedComponent implements OnInit {
 
   constructor(private db : RealtimefbService, private auth : AuthusersService, private popover : PopoverController, private route : Router) { }
 
-  colorheart="light";
-  colorplane="light";
-  colorcoment="light";
-  colorsave="light";
+  colorheart="dark";
+  colorplane="dark";
+  colorcoment="dark";
+  colorsave="dark";
 
   userLogged=this.auth.getUserLogged();
   key = 123;
-  posts : any = [];
+  posts : Post[] = [];
   reves : any = [];
   tester : any = [];
+  entries : any = {};
 
   filtro : string = '';
   isPopoverOpen : boolean = false;
-  editando: boolean = false;
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.cargarFeed();
+  }
 
   cargarFeed() {
-    this.db.getPublicaciones()
-    .subscribe(resp => {
+    this.db.getPublicaciones().subscribe(resp => {
       console.log(resp);
+      this.entries = resp;
+      console.log(this.entries);
       this.tester = Object.values(resp);
       console.log(this.tester);
       for(let test of this.tester){
@@ -44,58 +49,49 @@ export class FeedComponent implements OnInit {
       }
       //console.log(this.alumnos);
       console.log(this.posts);
-      console.log(Object.keys(resp).reverse());
+      //console.log(Object.keys(resp).reverse());
       this.reves=this.posts.reverse();
     })
    }
 
-   borrar(idPost : number)  {
-    this.db.deletePublicacion(idPost).subscribe(res => {
-      console.log(res);
-      this.cargarFeed();
+  redirect(id :string){
+    console.log(id);
+    Object.entries(this.entries).forEach(([key,value]) => {
+      //console.log(key);
+      //console.log(value);
+      if(id == (value as Post).id){
+        console.log(key);
+        this.route.navigate(['/publi',key]);
+      }
     })
-    
   }
-
-  editar() {
-    this.editando = !this.editando;
-  }
-
-  guardar(idPost: number, nuevoCaption: any) {
-    this.db.updatePublicacion(idPost, nuevoCaption).subscribe(res => {
-      console.log("Se actualizo la base de datos")
-    });
-
-    this.editar();
-  }
-  
   //#region Interacciones
 
   heart(){
-    if(this.colorheart=="light")
+    if(this.colorheart=="dark")
     this.colorheart="danger";
     else
-    this.colorheart="light";
+    this.colorheart="dark";
   }
   plane(){
-    if(this.colorplane=="light")
+    if(this.colorplane=="dark")
     this.colorplane="tertiary";
     else
-    this.colorplane="light";
+    this.colorplane="dark";
     
   }
   coment(){
-    if(this.colorcoment=="light")
+    if(this.colorcoment=="dark")
     this.colorcoment="warning";
     else
-    this.colorcoment="light";
+    this.colorcoment="dark";
    
   }
   save(){
-    if(this.colorsave=="light")
+    if(this.colorsave=="dark")
     this.colorsave="primary";
     else
-    this.colorsave="light";
+    this.colorsave="dark";
   }
 
   //#endregion

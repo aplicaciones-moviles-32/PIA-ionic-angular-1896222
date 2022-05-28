@@ -1,45 +1,72 @@
 <ion-content>
-  <div style="height: 100%; display: flex; align-items: center; justify-content: center; ">
-    
-    <ion-card >
-      <ion-card-header>
-        <ion-card-title class="ion-text-center">Registro de usuario</ion-card-title>
-        
-        <ion-card-subtitle>Ingresa los datos solicitados</ion-card-subtitle>
-      </ion-card-header>
-    
-      <ion-card-content>
-        <div >
+  <ion-grid>
+    <ion-row>
+      <ion-col size-md="8" offset-md="2">
+        <ion-card style="margin-top: 10%;">
+          <ion-card-header>
+            <ion-card-title style="text-align: center;">Registro</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <ion-grid>
+              <ion-row style="height: 30px;"></ion-row>
+              <ion-row style="border: solid 1px; border-radius: 10px;">
+                <ion-col>
+                  <ion-input type="text" placeholder="Nombre de usuario" [(ngModel)]="newUser.name" style="margin-left: 10px;"></ion-input>
+                </ion-col>
+              </ion-row>
+              <ion-row style="height: 30px;"></ion-row>
+              <ion-row style="border: solid 1px; border-radius: 10px;">
+                <ion-col>
+                  <ion-input type="text" placeholder="Correo electrónico" [(ngModel)]="newUser.email" style="margin-left: 10px;"></ion-input>
+                </ion-col></ion-row>
+              <ion-row style="height: 30px;"></ion-row>
+              <ion-row style="border: solid 1px; border-radius: 10px">
+                <ion-col>
+                  <ion-input type="password" placeholder="Contraseña" [(ngModel)]="newUser.pass" style="margin-left: 10px;" required></ion-input>
+                </ion-col>
+              </ion-row>
+              <ion-row style="height: 30px;"></ion-row>
+              <ion-row style="border: solid 1px; border-radius: 10px">
+                <ion-col>
+                  <ion-input type="password" placeholder="Confirma coontraseña" [(ngModel)]="newUser.confirm" style="margin-left: 10px;" required></ion-input>
+                </ion-col>
+              </ion-row>
+              <ion-row style="height: 30px;"></ion-row>
+              <ion-row style="text-align: center;">
+                <ion-col>
+                  <input style="display: none;"  type="file" accept=".png,.jpg,.jpeg"  (change)="uploadedImg($event)" id="inputFile">
+                  <label style="font-size: 30px;" for="inputFile"><ion-icon name="camera-outline" size="large" style="margin-right: 10px;"></ion-icon>/<ion-icon  size="large" name="folder-outline" style="margin-left: 10px;"></ion-icon></label>       
+                </ion-col>
+              </ion-row>
+              <ion-grid *ngIf="imgUp">
+                <ion-row style="text-align: left; align-content: center; align-items: center; justify-content: center;">
+                  <ion-col size="0" style="margin-right: 100px;">
+                    <ion-avatar style="height: 100px; width: 100px;">
+                      <ion-img [src]="imgUp"></ion-img>
+                    </ion-avatar>
+                  </ion-col>
+                  <ion-col size="5" >
+                    <ion-label class="ion-text-warp" style="font-size: 20px;">{{newUser.name}}</ion-label>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+              <ion-row style="height: 30px;"></ion-row>
+              <ion-button expand="block" (click)="Registro()">Registrarse</ion-button> 
+
+            </ion-grid>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
   
-            <ion-label>Nombre de usuario: </ion-label>
-            <ion-input placeholder="NoobMaster69" required [(ngModel)]="newUser.name"></ion-input>
-            <ion-label>Correo electronico: </ion-label>
-            <ion-input placeholder="correo@gmail.com" required [(ngModel)]="newUser.email"></ion-input>
-  
-            <ion-label>Contraseña: </ion-label>
-            <ion-input type="password" placeholder="contraseña (minimo 8 caracteres)" required [(ngModel)]="newUser.pass"></ion-input>
-            
-            <ion-input type="password" placeholder="confirma tu contraseña" required [(ngModel)]="newUser.confirm"></ion-input>
-            <input style="display: none;"  type="file" accept=".png,.jpg,.jpeg"  (change)="uploadedImg($event)" id="inputFile">
-                <div style="text-align: center;">
-                  <ion-label>Subir una foto</ion-label>
-                  <br>
-                  
-                  <label  for="inputFile"><ion-icon  size="large" name="image-outline"></ion-icon></label>
-                </div>
-            
-          
-          <div *ngIf="imgUp" style="text-align: center;">
-            
-            <img src="{{imgUp}}" style="width: 20%;">
-            <br>
-            <ion-button expand="block" (click)="Registro()">Registrarse</ion-button> 
-          </div>
-           
-            <br>
-            <ion-label>Ya tienes cuenta? <a href="/feed">Iniciar Sesion</a></ion-label>
-        </div>
-      </ion-card-content>
-    </ion-card>
-  </div>
 </ion-content>
+<ion-footer>
+  <ion-grid>
+    <ion-row>
+      <ion-col style="text-align: center; margin-bottom: 10px;">
+       <ion-label>¿Ya eres usuario? <a href="/feed">Inicia Sesión</a></ion-label>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-footer>

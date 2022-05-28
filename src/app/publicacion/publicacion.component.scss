@@ -1,0 +1,35 @@
+.usuario {
+    color: gray;
+    font-size: 12px;
+    padding: 20px 10px;
+}
+.caption {
+    color: darkgray;
+    font-size: 16px;
+}
+.card {
+    border: solid 1px gray;
+    margin-bottom: 10px;
+}
+ion-avatar{
+    align-self: center;
+    width: 34px;
+    height: 34px;
+}
+.label{
+    align-self: center;
+    margin-left: 10px;
+}
+.toolbar-trans{
+    --background: transparent;
+    --ion-color-base: transparent !important;
+    color: transparent;
+    margin: 0;
+    --opacity: 1;
+    --padding-top: 0px;
+    --padding-bottom: 0;
+    --margin-top: 0px  !important;
+  }
+  ion-card-content {
+    --margin-top: 0px  !important;
+  }

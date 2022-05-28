@@ -1,0 +1,19 @@
+ion-avatar, ion-icon{
+    width: 20px;
+    height: 20px;
+}
+.container ion-label {
+    text-align: left;
+    flex: 0 0 50%;
+}
+#trigger-notificaciones {
+    height: 2em;
+}
+.container{
+    text-align: left;
+    display: flex;
+    align-items: center;
+}
+.perfil, .notificaciones {
+    flex: 1 0 auto;
+}

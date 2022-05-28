@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { PopoverController } from '@ionic/angular';
+import { AuthusersService } from '../services/authusers.service';
 
 @Component({
   selector: 'app-nav',
@@ -7,8 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavComponent implements OnInit {
 
-  constructor() { }
+  constructor(private auth : AuthusersService, private pop : PopoverController) { }
 
   ngOnInit() {}
+
+  userLogged=this.auth.getUserLogged();
+  logOut(){
+    this.auth.logOut();
+    this.pop.dismiss();
+  }
 
 }

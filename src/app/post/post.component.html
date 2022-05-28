@@ -1,3 +1,45 @@
-<p>
-  post works!
-</p>
+<ion-content mode="ios" *ngIf="userLogged|async; else elseBlock">
+  <ion-grid>
+    <ion-row>
+      <ion-col size-md="8" offset-md="2">
+        <ion-card >
+            <ion-card-header>
+              <ion-card-title style="text-align: center;">Nueva Publicación</ion-card-title>
+            </ion-card-header>
+
+            <ion-input style="display: none;"  type="file" accept=".png,.jpg,.jpeg"  (change)="cargarImagen($event)" id="inputFile"></ion-input>
+                <ion-row>
+                  <ion-col>
+                    <ion-button expand="block" (click)="TomarFoto()"><ion-icon name="camera-outline" size="large" style="margin-right: 10px;"></ion-icon>/<ion-icon  size="large" name="folder-outline" style="margin-left: 10px;"></ion-icon></ion-button>
+                  </ion-col>
+                </ion-row>  
+
+            <ion-img [src]="imagenSubida" *ngIf="imagenSubida"></ion-img>
+
+            <ion-card-content>
+              <ion-grid>
+                <ion-row style="height: 30px;"></ion-row>
+                <ion-row style="border: solid 1px; border-radius: 10px;">
+                  <ion-col>
+                    <ion-input type="text" placeholder="Escribe un pie de foto" [(ngModel)]="post.caption" style="margin-left: 10px;"></ion-input>
+                  </ion-col>
+                </ion-row>
+                <ion-row style="height: 30px;"></ion-row>
+                <ion-row>
+                  <ion-col>
+                    <ion-button (click)="subir()" *ngIf="imagenSubida" expand="block">Postear</ion-button>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+              
+              
+            </ion-card-content>
+         </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  
+</ion-content>
+<ng-template #elseBlock>
+    <app-login></app-login>
+</ng-template>

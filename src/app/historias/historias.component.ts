@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthusersService } from '../services/authusers.service';
 
 @Component({
   selector: 'app-historias',
@@ -7,8 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HistoriasComponent implements OnInit {
 
-  constructor() { }
+  constructor(private auth : AuthusersService) { }
 
   ngOnInit() {}
+
+  userLogged=this.auth.getUserLogged();
 
 }

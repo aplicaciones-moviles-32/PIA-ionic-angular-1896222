@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ModalController } from '@ionic/angular';
 
 @Component({
   selector: 'app-histcontent',
@@ -7,8 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HistcontentComponent implements OnInit {
 
-  constructor() { }
+  constructor(private modal : ModalController) { }
 
-  ngOnInit() {}
+  ngOnInit() {  }
 
+  
+
+  ngOnDestroy(){
+    this.modal.dismiss();
+  }
 }

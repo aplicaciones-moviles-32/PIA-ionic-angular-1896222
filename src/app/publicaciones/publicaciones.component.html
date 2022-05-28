@@ -1,3 +1,24 @@
-<p>
-  publicaciones works!
-</p>
+<ion-grid *ngIf="userLogged|async as user;"> 
+  <ion-segment color="primary" value="posts" (ionChange)="toggleActivo($event)">
+    <ion-segment-button value="posts" cheked>
+      <ion-icon name="grid"></ion-icon>    
+    </ion-segment-button>
+    <ion-segment-button value="tagged">
+        <ion-icon name="people-circle-outline"></ion-icon>
+      </ion-segment-button>
+  </ion-segment>
+  
+  <ion-grid *ngIf=" activo ==='posts'">
+    <ion-row > 
+        <ion-col size="4" *ngFor="let post of posts"> 
+              <ion-img (click)="redirect(post.id)"  [src]="post.pImg" style="height: 100%;"></ion-img>
+        </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-grid>
+    <ion-row style="justify-content: center;" *ngIf=" activo =='tagged'"> 
+      <ion-label>En construccion</ion-label>
+    </ion-row>
+  </ion-grid>
+  
+</ion-grid>

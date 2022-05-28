@@ -1,3 +1,90 @@
-<p>
-  publicacion works!
-</p>
+<ion-content *ngIf="userLogged|async as user;">
+    <ion-grid>
+        <ion-row>
+            <ion-col size-md="8" offset-md="2">
+                <ion-card>
+                    <ion-card-header>
+                        <ion-toolbar class="toolbar-trans" style="align-items: center;">
+                            <ion-buttons slot="start">
+                                <ion-button href="/feed" color="dark"><ion-icon name="chevron-back-outline"></ion-icon></ion-button>
+                            </ion-buttons>
+                            <ion-buttons slot="start">
+                                <ion-avatar>
+
+                                    <img *ngIf="publicacionImprimir.id else noimagen"  [src]="publicacionImprimir.uImg" width="50px">
+                                    <ng-template #noimagen>
+                                    <img  src="https://cdn.pixabay.com/photo/2018/06/26/01/20/connection-lost-3498366_960_720.png" width="50px">
+                                    </ng-template>
+    
+                                </ion-avatar>
+                            </ion-buttons>
+                            <ion-buttons style="display: flex; text-align: center;">
+                                <ion-button color="dark" *ngIf="publicacionImprimir.user else userFail">{{publicacionImprimir.user}}</ion-button>
+                                <ng-template #userFail>
+                                    <ion-button  class="label">Error</ion-button>
+                                </ng-template> 
+                            </ion-buttons>
+                        </ion-toolbar>
+                        <ion-grid>
+                            
+                            <ion-row style="text-align: left; align-content: center; align-items: center; justify-content: center;">
+                            </ion-row>
+                            <ion-row>
+                                <ion-col *ngIf="user.uid==publicacionImprimir.UID" >
+                                    <ion-button   expand="block" (click)="EditAlert(publicacionImprimir)"><ion-icon size="large" name="save-outline"></ion-icon></ion-button>
+                                </ion-col>
+                                <ion-col *ngIf="user.uid==publicacionImprimir.UID" >
+                                    <ion-button color="danger" (click)="EraseAlert()" expand="block"><ion-icon size="large" name="trash-outline"></ion-icon></ion-button>
+                                </ion-col>
+                            </ion-row>
+                        </ion-grid>
+                    </ion-card-header>
+
+                    <ion-img [src]="publicacionImprimir.pImg" alt="" ></ion-img>
+
+                    <ion-card-content>
+                        <ion-toolbar class="toolbar-trans" translucent>
+                            <ion-buttons slot="start">
+                                <ion-button color="{{colorheart}}" (click)="heart()"><ion-icon name="heart-outline"></ion-icon><ion-label>14k</ion-label></ion-button>
+                            </ion-buttons>
+                            <ion-buttons slot="start">
+                                <ion-button color="{{colorcoment}}" (click)="coment()"><ion-icon name="chatbubble-outline"></ion-icon><ion-label>1k</ion-label></ion-button>
+                            </ion-buttons>
+                            <ion-buttons slot="start">
+                                <ion-button color="{{colorplane}}" (click)="plane()"><ion-icon name="paper-plane-outline"></ion-icon></ion-button>
+                            </ion-buttons>
+                            <ion-buttons slot="end">
+                                <ion-button color="{{colorsave}}" (click)="save()"><ion-icon name="bookmark-outline"></ion-icon></ion-button>
+                            </ion-buttons>
+                        </ion-toolbar>
+
+                        <ion-grid>
+                            <ion-row>
+                                <ion-col>
+                                    <div *ngIf="user.uid==publicacionImprimir.UID">
+                                        <ion-label style="font-size: 12px;">Modo edición:</ion-label>
+                                    </div>
+                                    <div *ngIf="user.uid==publicacionImprimir.UID else lockedDisplay">
+                                        <ion-textarea [(ngModel)]="publicacionImprimir.caption" placeholder="Ingresar Nueva Caption" ></ion-textarea>
+                                    </div>
+                                    <ng-template #lockedDisplay>
+                                        <ion-label color="dark" class="ion-text-warp">{{publicacionImprimir.caption}}</ion-label>
+                                    </ng-template> 
+                                    
+                                </ion-col>
+                            </ion-row>
+                            <!-- <ion-row>
+                                <ion-col>
+                                    <ion-button href="/feed" expand="block">Regresar</ion-button>
+                                </ion-col>                   
+                            </ion-row> -->
+                        </ion-grid>
+
+                    </ion-card-content>
+                </ion-card>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+  
+
+</ion-content>

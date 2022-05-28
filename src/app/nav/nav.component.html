@@ -1,3 +1,45 @@
-<p>
-  nav works!
-</p>
+<ion-header>
+  <ion-toolbar *ngIf="userLogged|async as user">
+    <ion-title text-left>IOgram</ion-title>
+
+      <ion-buttons slot="end" >
+
+        <ion-button color="dark" id="trigger-notificaciones">
+          <ion-icon name="heart-outline" slot="end"></ion-icon>
+        </ion-button>
+        <ion-popover trigger="trigger-notificaciones" show-backdrop="false">
+          <ng-template>
+            <ion-list>
+              <ion-item>
+                Notificacion
+              </ion-item>
+            </ion-list>
+          </ng-template>
+        </ion-popover>
+
+      </ion-buttons>
+
+      
+
+      <ion-buttons slot="end">
+
+        <ion-button shape="round">
+          <ion-avatar slot="end">
+            <ion-img [src]="user.photoURL" id="user-header-pic"></ion-img>
+          </ion-avatar>
+        </ion-button>
+        <ion-popover trigger="user-header-pic">
+          <ng-template>
+            <ion-list>
+              <ion-item>
+                <ion-label>
+                  <ion-button expand="block" color="danger" (click)="logOut()" id="log">Salir</ion-button>
+                </ion-label>
+              </ion-item>
+            </ion-list>
+          </ng-template>
+        </ion-popover>
+
+      </ion-buttons>
+  </ion-toolbar>
+</ion-header>

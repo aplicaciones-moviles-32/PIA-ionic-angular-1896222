@@ -3,7 +3,6 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { AltaComponent } from './alta/alta.component';
 import { EditprofileComponent } from './editprofile/editprofile.component';
 import { FeedComponent } from './feed/feed.component';
-import { MapComponent } from './map/map.component';
 import { PerfilComponent } from './perfil/perfil.component';
 import { PostComponent } from './post/post.component';
 import { PublicacionComponent } from './publicacion/publicacion.component';
@@ -24,7 +23,6 @@ const routes: Routes = [
   {path : 'post', component :PostComponent},
   {path : 'publi/:id', component :PublicacionComponent},
   {path : 'alta', component :AltaComponent},
-  {path : 'map', component :MapComponent},
   {path : '**', component :FeedComponent},
 
 ];

@@ -68,9 +68,8 @@ export class AltaComponent implements OnInit {
     console.log(this.newUser.pass+this.newUser.confirm,this.newUser.name,this.newUser.email);
     
     if(this.newUser.pass==this.newUser.confirm &&(this.newUser.name!='')&&(this.newUser.pass!='')&&(this.newUser.email!='')){
-     this.presentAlert(); 
+      this.presentAlert(); 
       this.uploadImg(this.newUser,this.imgUp).then(x=>{
-        
         console.log("subida"+{x});
         url=x;
         let id;
@@ -79,9 +78,7 @@ export class AltaComponent implements OnInit {
           console.log("Registro exitoso:",res);
           id=this.auth.getUserId();
           const auth = getAuth();
-          updateProfile(auth.currentUser, {
-            displayName:name, photoURL: url
-          }).then(() => {
+          updateProfile(auth.currentUser, { displayName:name, photoURL: url }).then(() => {
             console.log("Todo listo");
             window.location.href="/feed";
           }).catch((error) => {});
