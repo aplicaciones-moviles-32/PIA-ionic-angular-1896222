@@ -1,0 +1,19 @@
+{
+    "logs": [
+        {
+            "outputFile": "io.ionic.starter.app-mergeDebugResources-19:/values-w320dp-land-v13/values-w320dp-land-v13.xml",
+            "map": [
+                {
+                    "source": "C:\\Users\\rodri\\.gradle\\caches\\transforms-3\\7fc66b2e7e7ec603b50a368049662e01\\transformed\\material-1.3.0\\res\\values-w320dp-land-v13\\values-w320dp-land-v13.xml",
+                    "from": {
+                        "startLines": "2,3,4",
+                        "startColumns": "4,4,4",
+                        "startOffsets": "55,110,172",
+                        "endColumns": "54,61,51",
+                        "endOffsets": "105,167,219"
+                    }
+                }
+            ]
+        }
+    ]
+}
