@@ -1,1 +1,2 @@
-.npmkeep
+/build/*
+!/build/.npmkeep
